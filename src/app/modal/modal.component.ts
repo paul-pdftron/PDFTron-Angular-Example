@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -13,7 +13,6 @@ export class ModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.ref.detectChanges();
   }
 
   public close() {

@@ -87,7 +87,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   public async openModal() {
-    const modalRef = this.modalService.open(ModalComponent, { keyboard: true, backdrop: true });
+    const modalRef = this.modalService.open(ModalComponent, { keyboard: true, backdrop: 'static' });
     modalRef.componentInstance.input1 = 'test for input1';
     modalRef.componentInstance.input2 = 'test for input2';
 
