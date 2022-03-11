@@ -1,11 +1,13 @@
-<button type="button" (click)="openModal()">open modal</button>
-<button type="button" (click)="set()">show pdftron</button>
-{{ this.showPDF}}
+<div class="d-flex flex-row justify-content-center">
+  <button type="button" (click)="openModal()">open modal</button>
+  <button type="button" (click)="set()">show pdftron</button>
+</div>
+PDFTron should be shown: {{ this.showPDF}}
 <div class="d-flex flex-column align-items-center justify-content-between">
-  <div class="page" [hidden]="this.showPDF">
+  <div class="page" [hidden]="!this.showPDF">
     <div class="header">Angular sample</div>
     <div #viewer class="viewer"></div>
   </div>
-  <div [hidden]="!this.showPDF">test123</div>
+  <div [hidden]="this.showPDF">test123</div>
 </div>
 

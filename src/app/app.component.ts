@@ -34,11 +34,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       const { documentViewer, Annotations, annotationManager } = instance.Core;
 
-      // button to switch view
       instance.UI.setHeaderItems(header => {
         header.push({
           type: 'actionButton',
-          img: '../../files/eye-slash-solid.svg',
+          img: '../../files/message-solid.svg',
           onClick: async () => {
             await this.openModal();
           },
