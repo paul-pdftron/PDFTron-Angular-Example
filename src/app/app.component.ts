@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, Output, EventEmitter, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, OnInit, Output, EventEmitter, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, NgZone } from '@angular/core';
 import { Subject } from 'rxjs';
 import WebViewer, { WebViewerInstance } from '@pdftron/webviewer';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public showPDF = true;
 
-  constructor(private modalService: NgbModal, private ref: ChangeDetectorRef) {
+  constructor(private modalService: NgbModal, private ref: ChangeDetectorRef, private zone: NgZone) {
     this.documentLoaded$ = new Subject<void>();
   }
 
@@ -39,7 +39,9 @@ export class AppComponent implements OnInit, AfterViewInit {
           type: 'actionButton',
           img: '../../files/message-solid.svg',
           onClick: async () => {
-            await this.openModal();
+            this.zone.run(() => {
+              this.openModal();
+            });
           },
           title: 'open modal'
         });
@@ -50,7 +52,9 @@ export class AppComponent implements OnInit, AfterViewInit {
           type: 'actionButton',
           img: '../../files/eye-slash-solid.svg',
           onClick: () => {
-            this.set();
+            this.zone.run(() => {
+              this.set();
+            });
           },
           title: 'show'
         });
